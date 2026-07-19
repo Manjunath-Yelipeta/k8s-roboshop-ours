@@ -6,7 +6,7 @@ metadata:
 type: Opaque
 data:
   # Values must be base64 encoded string outputs (e.g., echo -n "admin" | base64)
-  MYSQL_ROOT_PASSWORD: Um9ib1Nob3BAMQo=
+  MYSQL_ROOT_PASSWORD: Um9ib1Nob3BAMQ==
   
 ---
 apiVersion: apps/v1
