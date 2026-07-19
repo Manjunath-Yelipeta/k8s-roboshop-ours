@@ -15,6 +15,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: payment-secret
+  namespace: roboshop
 type: Opaque
 data:
   # Values must be base64 encoded string outputs (e.g., echo -n "admin" | base64)
