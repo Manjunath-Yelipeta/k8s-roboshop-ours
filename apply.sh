@@ -1,0 +1,16 @@
+ #!/bin/bash                                                                                                                                                                                                   
+ set -e                                                                                                                                                                                                        
+                                                                                                                                                                                                               
+ # Apply namespace first if present                                                                                                                                                                            
+ kubectl apply -f 01_namespace.yaml                                                                                                                                                                            
+                                                                                                                                                                                                               
+ # Apply app manifests in dependency order                                                                                                                                                                     
+ for dir in mongodb catalogue mysql user cart redis shipping frontend; do                                                                                                                                      
+   echo "Applying manifests in: $dir"                                                                                                                                                                          
+   kubectl apply -f "$dir/"                                                                                                                                                                                    
+ done                                                                                                                                                                                                          
+                                                                                                                                                                                                               
+ echo "All manifests applied successfully."                                                                                                                                                                    
+                                                                                                                                                                                                        
+                                                                                                                                                                                                              
+ 
