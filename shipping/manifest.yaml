@@ -43,22 +43,21 @@ spec:
           containerPort: 8080
         startupProbe:
             httpGet:
-              path: /healthz
+              path: /health
               port: liveness-port
             failureThreshold: 12
             periodSeconds: 10
         livenessProbe:
             httpGet:
-              path: /healthz
+              path: /health
               port: liveness-port
             periodSeconds: 10
-            failureThreshold: 1
+            failureThreshold: 2
         readinessProbe:
-            exec:
-              command:
-              - /bin/cat
-              - /tmp/healthy
-            periodSeconds: 5
+            httpGet:
+              path: /health
+              port: liveness-port
+            periodSeconds: 10
       
 ---
 apiVersion: v1
