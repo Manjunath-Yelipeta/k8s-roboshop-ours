@@ -98,7 +98,9 @@ spec:
         image: mathslogic/frontend:4.0.0
         volumeMounts:
           - name: config-volume
-            mountPath: /etc/nginx/conf.d # Nginx automatically loads .conf files from here
+            mountPath: /etc/nginx/nginx.conf
+            subPath: nginx.conf # Nginx automatically loads .conf files from here
+            readOnly: true # Read only access to the config map
       volumes:
       - name: config-volume
         configMap:
