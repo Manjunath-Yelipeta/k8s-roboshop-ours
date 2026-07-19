@@ -38,6 +38,27 @@ spec:
         envFrom:
         - configMapRef:
             name: shipping-config
+        ports:
+        - name: liveness-port
+          containerPort: 8080
+        startupProbe:
+            httpGet:
+              path: /healthz
+              port: liveness-port
+            failureThreshold: 12
+            periodSeconds: 10
+        livenessProbe:
+            httpGet:
+              path: /healthz
+              port: liveness-ports
+            periodSeconds: 10
+            failureThreshold: 1
+        readinessProbe:
+            exec:
+              command:
+              - /bin/cat
+              - /tmp/healthy
+            periodSeconds: 5
       
 ---
 apiVersion: v1
